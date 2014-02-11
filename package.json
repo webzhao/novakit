@@ -20,6 +20,7 @@
     "url": "https://github.com/webzhao/novakit/issues"
   },
   "dependencies": {
-    "weinre": "~2.0.0-pre-HH0SN197"
+    "weinre": "~2.0.0-pre-HH0SN197",
+    "express": "~3.4.8"
   }
 }
