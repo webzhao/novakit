@@ -1,0 +1,25 @@
+{
+  "name": "novakit",
+  "version": "0.0.1",
+  "description": "Remote debugging proxy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webzhao/novakit.git"
+  },
+  "keywords": [
+    "mobile",
+    "debug"
+  ],
+  "author": "wenbo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webzhao/novakit/issues"
+  },
+  "dependencies": {
+    "weinre": "~2.0.0-pre-HH0SN197"
+  }
+}
