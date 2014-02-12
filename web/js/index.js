@@ -36,6 +36,18 @@
         //reset input box
         $('#input_url').val('');
 
+        //animate
+        $('#hd').removeClass('init-state');
+
+    });
+
+    /* remove page */
+    $('#page_list').delegate('.delete', 'click', function(e){
+        e.preventDefault();
+        $(this).closest('li').remove();
+        if ($('#page_list>li').length === 0) {
+            $('#hd').addClass('init-state');
+        }
     });
 
 
