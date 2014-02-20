@@ -18,14 +18,14 @@
     <div id="bd" class="content-wrap">
         <ul id="page_list" class="page-list"></ul>
         <script type="text/x-template" id="page_template">
-            <li class="page">
+            <li class="page" data-page-num={{pageNum}}>
                 <a href="{{proxy_url}}" target="_blank">
                     <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&choe=UTF-8&chl={{url_encoded}}" class="qrcode">
                 </a>
                 <p class="url"><a href="{{url}}" target="_blank">{{url}}</a></p>
                 <p class="desc">请扫描左侧二维码，在手机浏览器中打开您要调试的页面。</p>
                 <div class="actions">
-                    <a href="http://{{host}}:{{port}}/client/#anonymous" class="open-debug" target="_blank"><i class="fa fa-code"></i>打开调试工具</a>
+                    <a href="http://{{host}}:{{port}}/client/#{{hash}}" class="open-debug" target="_blank"><i class="fa fa-code"></i>打开调试工具</a>
                     <a href="#" class="delete"><i class="fa fa-times"></i>删除本页面</a>
                 </div>
             </li>
