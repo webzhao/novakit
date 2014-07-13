@@ -2,6 +2,7 @@
 
     /* configuration */
     var DEBUG_PORT = 80;
+    var storageKey = 'novakit';
 
     /* check browser support */
     if ($.Browser.ie && parseInt($.Browser.ie) < 9) {
@@ -9,16 +10,12 @@
         return;
     }
 
-    /* configuration */
-    var DEBUG_PORT = 8080;
-    var storageKey = 'novakit';
-
     var pageTemplate = Handlebars.compile($('#page_template').html());
 
 
     /* get and display storage data */
     var pageNum = 0;
-    var urls = get(storageKey);
+    var urls = get(storageKey) || [];
     for(var i = urls.length - 1; urls && i >= 0 ; i--) {
         !urls[i] && urls.splice(i, 1);
     }
@@ -64,12 +61,14 @@
 
     function addPage(url) {
 
+        var proxy_url = getProxyURL() + '?url=' + encodeURIComponent(url);
+
         //add
         var pageHTML = pageTemplate({
             pageNum: pageNum++,
             url: url,
-            proxy_url: getProxyURL() + '?url=' + encodeURIComponent(url),
-            url_encoded: encodeURIComponent(getProxyURL() + '?url=' + encodeURIComponent(url)),
+            proxy_url: proxy_url,
+            url_encoded: encodeURIComponent(proxy_url),
             host: 'novadebug.qiwoo.org',
             port: DEBUG_PORT
         });
@@ -82,6 +81,9 @@
 
         //animate
         $('#hd').removeClass('init-state');
+
+        //qrcode
+        new QRCode($('.qrcode').last()[0], {text: proxy_url, width:150, height: 150});
 
     }
 

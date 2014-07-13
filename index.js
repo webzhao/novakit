@@ -4,7 +4,7 @@
  */
 
 /* configuration */
-var config = require('config');
+var config = require('./config');
 var DEBUG_SERVER = '';
 
 /* required modules */
