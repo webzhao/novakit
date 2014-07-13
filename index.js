@@ -4,8 +4,8 @@
  */
 
 /* configuration */
-var DEBUG_PORT = 8080;
-var APP_PORT = 8866;
+var config = require('config');
+var DEBUG_SERVER = '';
 
 /* required modules */
 var http = require('http');
@@ -22,7 +22,7 @@ app.get('/proxy', function(req, res){
      * inject script to original html
      */
     function injectScript(html) {
-        var clientScript = 'http://' + req.headers['host'].replace(/\:\d+/, '') + ':' + DEBUG_PORT + '/target/target-script-min.js#anonymous';
+        var clientScript = config.DEBUG_SERVER + '/target/target-script-min.js#anonymous';
         return html.replace('</body>', '<script src="' + clientScript + '"></script></body>');
     }
 
@@ -46,6 +46,6 @@ app.get('/proxy', function(req, res){
     });;
 });
 
-app.listen(APP_PORT);
-console.log('Novakit已经启动，请使用浏览器访问 http://360.75team.com:' + APP_PORT);
+app.listen(config.APP_PORT);
+console.log('Novakit已经启动，请使用浏览器访问http://localhost:' + config.APP_PORT);
 

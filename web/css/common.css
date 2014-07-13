@@ -99,13 +99,11 @@ a:hover {
 }
 #page_list .page img {
     float: left;
-    margin-right: 20px;
-    width: 200px;
-    height: 200px;
+    margin: 20px 20px 20px 0;
 }
 #page_list .page .url {
     font: italic 20px/2 Georgia, serif;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 #page_list .page .desc {
     margin: 8px 0;

@@ -1,7 +1,7 @@
 (function(){
 
     /* configuration */
-    var DEBUG_PORT = 8080;
+    var DEBUG_PORT = 80;
 
     /* check browser support */
     if ($.Browser.ie && parseInt($.Browser.ie) < 9) {
@@ -26,7 +26,7 @@
             url: url,
             proxy_url: getProxyURL() + '?url=' + encodeURIComponent(url),
             url_encoded: encodeURIComponent(getProxyURL() + '?url=' + encodeURIComponent(url)),
-            host: location.host.replace(/\:\d+/, ''),
+            host: 'novadebug.qiwoo.org',
             port: DEBUG_PORT
         });
 
@@ -54,7 +54,7 @@
     /* utils */
     function getProxyURL() {
         var url = location.protocol + '//' + location.hostname;
-        if (location.port != '80') {
+        if (false && location.port != '80') {
             url += ':' + location.port;
         }
         url += '/proxy';
