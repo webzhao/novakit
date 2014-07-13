@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <title>Novakit：让远程调试更简单</title>
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <link href="http://libs.useso.com/js/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 
     <div id="hd" class="content-wrap init-state">
         <form id="add_page" class="add-page">
             <img src="img/logo.png" alt="novakit" width="148" height="48" class="logo">
-            <input placeholder="请输入要调试的页面URL" name="url" id="input_url"> <button type="submit">开始调试</button>
+            <input placeholder="请输入要调试的页面URL" name="url" class="url" id="input_url">
+            <a class="toggle fa fa-caret-down"></a>
+            <button type="submit">开始调试</button>
+            <div class="options" style="display:none">
+                <ul>
+                    <li>
+                        <label>Host:</label>
+                        <input type="text" id="input_host" placeholder="请输入hosts中的IP，如10.18.60.64">
+                    </li>
+                    <li>
+                        <label>Cookie:</label>
+                        <input type="text" id="input_cookie" placeholder="被调试页面所需Cookie">
+                    </li>
+                </ul>
+            </div>
         </form>
     </div>
 

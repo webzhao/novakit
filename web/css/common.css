@@ -60,9 +60,11 @@ a:hover {
     font-size: 16px;
     line-height: 20px;
     padding: 6px 10px;
-    width: 600px;
     border-radius: 5px;
     transition: all 0.2s ease;
+}
+#hd .url {
+    width: 500px;
 }
 #hd input:focus {
     outline: none;
@@ -90,6 +92,39 @@ a:hover {
 }
 #hd button:focus {
     outline: none;
+}
+#hd .options {
+    position: absolute;
+    width: 520px;
+    padding: 10px 30px;
+    top: 45px;
+    left: 153px;
+    background: #372E27;
+    border-radius: 5px;
+    box-shadow: 4px 4px 12px 0 #333;
+}
+#hd .options li {
+    padding: 8px 0
+}
+#hd .options label {
+    display: inline-block;
+    width: 60px;
+}
+#hd .options input {
+    padding: 4px 8px;
+    font-size: 14px;
+    width: 360px;
+}
+#hd .toggle {
+    color: #999;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 20px;
+    text-align: center;
+}
+#hd .toggle:hover {
+    color: #fff;
 }
 
 #page_list .page {

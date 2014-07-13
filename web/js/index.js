@@ -21,7 +21,12 @@
     }
     set(storageKey, urls);
     for(var i = 0; urls && i < urls.length; i++) {
-        addPage(urls[i]);
+        var item = urls[i];
+        if (typeof item == 'object') {
+            addPage(item.url, item.host, item.cookie);
+        } else {
+            addPage(item);
+        }
     }
 
     /* add page when submit */
@@ -29,18 +34,35 @@
         e.preventDefault();
         //check url
         var url = $('#input_url').val();
+        var host = $('#input_host').val();
+        var cookie = $('#input_cookie').val();
         if (!url || url.indexOf('http') != 0) {
             alert('请检查您输入的URL');
             return;
         }
 
-        addPage(url);
+        addPage(url, host, cookie);
+
+        //hide options
+        $('#hd .toggle').addClass("fa-caret-down").removeClass('fa-caret-square-o-down');
+        $('#hd .options').hide();
 
         // add to localStorage
         var urls = get(storageKey) || [];
-        urls.push(url);
+        urls.push({
+            url: url,
+            host: host,
+            cookie: cookie
+        });
         set(storageKey, urls);
     });
+
+    /* toggle options */
+    $('#hd .toggle').click(function(e){
+        e.preventDefault();
+        $('#hd .options').fadeToggle();
+        $(this).toggleClass("fa-caret-down fa-caret-square-o-down");
+    });;
 
 
     /* remove page */
@@ -59,9 +81,15 @@
     });
 
 
-    function addPage(url) {
+    function addPage(url, host, cookie) {
 
         var proxy_url = getProxyURL() + '?url=' + encodeURIComponent(url);
+        if (host) {
+            proxy_url += '&host=' + encodeURIComponent(host);
+        }
+        if (cookie) {
+            proxy_url += '&cookie=' + encodeURIComponent(cookie);
+        }
 
         //add
         var pageHTML = pageTemplate({
@@ -84,6 +112,9 @@
 
         //qrcode
         new QRCode($('.qrcode').last()[0], {text: proxy_url, width:150, height: 150});
+
+        //log
+        new Image().src = 'http://novalog.qiwoo.org/page.gif?url=' + encodeURIComponent(url) + '&_t=' + Math.random();
 
     }
 

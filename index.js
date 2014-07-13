@@ -26,10 +26,15 @@ app.get('/proxy', function(req, res){
     }
 
     var url = req.query.url;
+    var host = req.query.host;
     var options = URL.parse(url);
     options.headers = {
         'user-agent': req.headers['user-agent']
     };
+    if (host) {
+        options.host = host;
+    }
+    console.log(options);
     http.get(options, function(r){
         var resposeHTML = '';
         r.setEncoding('utf8');
