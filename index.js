@@ -25,8 +25,8 @@ app.get('/proxy', function(req, res){
         return html.replace('</body>', '<script src="' + clientScript + '"></script></body>');
     }
 
-    var url = req.query.url;
-    var host = req.query.host;
+    var url = decodeURIComponent(req.query.url);
+    var host = decodeURIComponent(req.query.host);
     var options = URL.parse(url);
     options.headers = {
         'user-agent': req.headers['user-agent']
@@ -34,7 +34,6 @@ app.get('/proxy', function(req, res){
     if (host) {
         options.host = host;
     }
-    console.log(options);
     http.get(options, function(r){
         var resposeHTML = '';
         r.setEncoding('utf8');
